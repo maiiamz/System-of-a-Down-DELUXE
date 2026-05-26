@@ -120,7 +120,7 @@ function draw() {
 
     // Add image on top with transparency
     tint(255, 100);
-    image(bgImage, 100, 0, 500, 500);
+    image(bgImage, 100, 100, 500, 500);
     noTint();
 
     const spectrum = fft.analyze();
@@ -171,13 +171,13 @@ function draw() {
 function drawAggressiveWaves(bass, lows, mids, highs) {
     strokeWeight(2);
     stroke(255, 0, 0, 200);
-    drawAggressiveWave(bass, height * 0.2);
+    drawAggressiveWave(bass, height * 0.4);
     stroke(255, 0, 0, 150);
-    drawAggressiveWave(lows, height * 0.2);
+    drawAggressiveWave(lows, height * 0.4);
     stroke(255, 0, 0, 100);
-    drawAggressiveWave(mids, height * 0.2);
+    drawAggressiveWave(mids, height * 0.4);
     stroke(255, 0, 0, 80);
-    drawAggressiveWave(highs, height * 0.2);
+    drawAggressiveWave(highs, height * 0.4);
 }
 
 function drawAggressiveWave(frequencyBand, yOffset) {
@@ -203,13 +203,13 @@ function drawAggressiveWave(frequencyBand, yOffset) {
 function drawSmoothWaves(bass, lows, mids, highs) {
     strokeWeight(1.5);
     stroke(0, 255, 200, 200);
-    drawSmoothWave(bass, height * 0.2, 0.5);
+    drawSmoothWave(bass, height * 0.4, 0.5);
     stroke(0, 200, 255, 150);
-    drawSmoothWave(lows, height * 0.2, 0.4);
+    drawSmoothWave(lows, height * 0.4, 0.4);
     stroke(100, 200, 255, 100);
-    drawSmoothWave(mids, height * 0.2, 0.3);
+    drawSmoothWave(mids, height * 0.4, 0.3);
     stroke(150, 150, 255, 80);
-    drawSmoothWave(highs, height * 0.2, 0.2);
+    drawSmoothWave(highs, height * 0.4, 0.2);
 }
 
 function drawSmoothWave(frequencyBand, yOffset, amplitude) {
@@ -234,13 +234,13 @@ function drawSmoothWave(frequencyBand, yOffset, amplitude) {
 function drawSharpWaves(bass, lows, mids, highs) {
     strokeWeight(0.8);
     stroke(200, 100, 255, 200);
-    drawSharpWave(bass, height * 0.2);
+    drawSharpWave(bass, height * 0.4);
     stroke(180, 100, 255, 150);
-    drawSharpWave(lows, height * 0.2);
+    drawSharpWave(lows, height * 0.4);
     stroke(160, 100, 255, 100);
-    drawSharpWave(mids, height * 0.2);
+    drawSharpWave(mids, height * 0.4);
     stroke(140, 100, 255, 80);
-    drawSharpWave(highs, height * 0.2);
+    drawSharpWave(highs, height * 0.4);
 }
 
 function drawSharpWave(frequencyBand, yOffset) {
@@ -265,16 +265,16 @@ function drawSharpWave(frequencyBand, yOffset) {
 function drawBoldWaves(bass, lows, mids, highs) {
     strokeWeight(4);
     stroke(255, 150, 0, 200);
-    drawBoldWave(bass, height * 0.2);
+    drawBoldWave(bass, height * 0.4);
     strokeWeight(3.5);
     stroke(255, 180, 0, 150);
-    drawBoldWave(lows, height * 0.2);
+    drawBoldWave(lows, height * 0.4);
     strokeWeight(3);
     stroke(255, 200, 0, 100);
-    drawBoldWave(mids, height * 0.2);
+    drawBoldWave(mids, height * 0.4);
     strokeWeight(2.5);
     stroke(255, 220, 0, 80);
-    drawBoldWave(highs, height * 0.2);
+    drawBoldWave(highs, height * 0.4);
 }
 
 function drawBoldWave(frequencyBand, yOffset) {
@@ -299,13 +299,13 @@ function drawBoldWave(frequencyBand, yOffset) {
 function drawWavyWaves(bass, lows, mids, highs) {
     strokeWeight(2);
     stroke(100, 200, 255, 200);
-    drawWavyWave(bass, height * 0.2, 0.03);
+    drawWavyWave(bass, height * 0.4, 0.03);
     stroke(50, 200, 255, 150);
-    drawWavyWave(lows, height * 0.2, 0.025);
+    drawWavyWave(lows, height * 0.4, 0.025);
     stroke(100, 180, 255, 100);
-    drawWavyWave(mids, height * 0.2, 0.02);
+    drawWavyWave(mids, height * 0.4, 0.02);
     stroke(150, 150, 255, 80);
-    drawWavyWave(highs, height * 0.2, 0.015);
+    drawWavyWave(highs, height * 0.4, 0.015);
 }
 
 function drawWavyWave(frequencyBand, yOffset, waveFreq) {
@@ -330,13 +330,13 @@ function drawWavyWave(frequencyBand, yOffset, waveFreq) {
 function drawGeometricWaves(bass, lows, mids, highs) {
     strokeWeight(2);
     stroke(150, 255, 0, 200);
-    drawGeometricWave(bass, height * 0.2);
+    drawGeometricWave(bass, height * 0.4);
     stroke(120, 255, 0, 150);
-    drawGeometricWave(lows, height * 0.2);
+    drawGeometricWave(lows, height * 0.4);
     stroke(90, 255, 0, 100);
-    drawGeometricWave(mids, height * 0.2);
+    drawGeometricWave(mids, height * 0.4);
     stroke(60, 255, 0, 80);
-    drawGeometricWave(highs, height * 0.2);
+    drawGeometricWave(highs, height * 0.4);
 }
 
 function drawGeometricWave(frequencyBand, yOffset) {
@@ -354,13 +354,13 @@ function drawGeometricWave(frequencyBand, yOffset) {
 function drawOrganicWaves(bass, lows, mids, highs) {
     strokeWeight(2.5);
     stroke(0, 200, 200, 200);
-    drawOrganicWave(bass, height * 0.2);
+    drawOrganicWave(bass, height * 0.4);
     stroke(50, 200, 180, 150);
-    drawOrganicWave(lows, height * 0.2);
+    drawOrganicWave(lows, height * 0.4);
     stroke(100, 180, 200, 100);
-    drawOrganicWave(mids, height * 0.2);
+    drawOrganicWave(mids, height * 0.4);
     stroke(150, 160, 200, 80);
-    drawOrganicWave(highs, height * 0.2);
+    drawOrganicWave(highs, height * 0.4);
 }
 
 function drawOrganicWave(frequencyBand, yOffset) {
@@ -386,16 +386,16 @@ function drawPulsingWaves(bass, lows, mids, highs) {
     const pulse = sin(time * 0.1) * 2 + 2;
     strokeWeight(1.5 + pulse);
     stroke(255, 100, 200, 200);
-    drawPulsingWave(bass, height * 0.2);
+    drawPulsingWave(bass, height * 0.4);
     strokeWeight(1.3 + pulse * 0.8);
     stroke(255, 80, 200, 150);
-    drawPulsingWave(lows, height * 0.2);
+    drawPulsingWave(lows, height * 0.4);
     strokeWeight(1.1 + pulse * 0.6);
     stroke(255, 60, 200, 100);
-    drawPulsingWave(mids, height * 0.2);
+    drawPulsingWave(mids, height * 0.4);
     strokeWeight(0.9 + pulse * 0.4);
     stroke(255, 40, 200, 80);
-    drawPulsingWave(highs, height * 0.2);
+    drawPulsingWave(highs, height * 0.4);
 }
 
 function drawPulsingWave(frequencyBand, yOffset) {
@@ -420,13 +420,13 @@ function drawPulsingWave(frequencyBand, yOffset) {
 function drawMinimalWaves(bass, lows, mids, highs) {
     strokeWeight(0.5);
     stroke(200, 200, 200, 200);
-    drawMinimalWave(bass, height * 0.2);
+    drawMinimalWave(bass, height * 0.4);
     stroke(180, 180, 180, 150);
-    drawMinimalWave(lows, height * 0.2);
+    drawMinimalWave(lows, height * 0.4);
     stroke(160, 160, 160, 100);
-    drawMinimalWave(mids, height * 0.2);
+    drawMinimalWave(mids, height * 0.4);
     stroke(140, 140, 140, 80);
-    drawMinimalWave(highs, height * 0.2);
+    drawMinimalWave(highs, height * 0.4);
 }
 
 function drawMinimalWave(frequencyBand, yOffset) {
@@ -445,10 +445,10 @@ function drawDenseWaves(bass, lows, mids, highs) {
     strokeWeight(0.5);
     for (let i = 0; i < 3; i++) {
         stroke(255, 255, 255, 80);
-        drawDenseWave(bass, height * 0.2 - i * 5);
-        drawDenseWave(lows, height * 0.2 - i * 5);
-        drawDenseWave(mids, height * 0.2 - i * 5);
-        drawDenseWave(highs, height * 0.2 - i * 5);
+        drawDenseWave(bass, height * 0.4 - i * 5);
+        drawDenseWave(lows, height * 0.4 - i * 5);
+        drawDenseWave(mids, height * 0.4 - i * 5);
+        drawDenseWave(highs, height * 0.4 - i * 5);
     }
 }
 
