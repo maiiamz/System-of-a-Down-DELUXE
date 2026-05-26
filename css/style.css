@@ -3,7 +3,8 @@ body {
     margin: 0;
 }
 
-body, html {
+body,
+html {
     overflow: hidden;
     margin: 0;
     padding: 0;
