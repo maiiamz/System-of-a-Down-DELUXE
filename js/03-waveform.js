@@ -30,22 +30,22 @@ const songNames = {
 // Map of song paths to wave styles
 const waveStyles = {
     "/audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3": "aggressive",
-    "/audio/Suite-Pee.mp3": "smooth",
+    "/audio/Suite-Pee.mp3": "bars",
     "/audio/Know.mp3": "sharp",
-    "/audio/Suggestions.mp3": "bold",
+    "/audio/Suggestions.mp3": "smooth",
     "/audio/Spiders.mp3": "wavy",
     "/audio/DDevil.mp3": "geometric",
     "/audio/Soil.mp3": "organic",
-    "/audio/War_.mp3": "pulsing",
-    "/audio/Peephole.mp3": "minimal",
-    "/audio/CUBErt.mp3": "dense",
+    "/audio/War_.mp3": "sharp",
+    "/audio/Peephole.mp3": "dots",
+    "/audio/CUBErt.mp3": "spiral",
     "/audio/Darts.mp3": "sharp",
-    "/audio/P.L.U.C.K..mp3": "aggressive",
-    "/audio/Sugar(Live-at-Irving-Plaza,NYC,NY-January-1999).mp3": "smooth",
-    "/audio/War_ (Live-1999).mp3": "pulsing",
-    "/audio/Suite-Pee(Live-1999).mp3": "wavy",
+    "/audio/P.L.U.C.K..mp3": "particles",
+    "/audio/Sugar(Live-at-Irving-Plaza,NYC,NY-January-1999).mp3": "bold",
+    "/audio/War_ (Live-1999).mp3": "fractals",
+    "/audio/Suite-Pee(Live-1999).mp3": "minimal",
     "/audio/Know(Live-1999).mp3": "geometric",
-    "/audio/Marmalade.mp3": "bold"
+    "/audio/Marmalade.mp3": "dense"
 };
 
 function preload() {
@@ -133,6 +133,33 @@ function draw() {
 
     // Draw waves based on current style
     switch(currentWaveStyle) {
+        case "bars":
+            drawBars(bass, lows, mids, highs);
+            break;
+        case "circles":
+            drawCircles(bass, lows, mids, highs);
+            break;
+        case "dots":
+            drawDots(bass, lows, mids, highs);
+            break;
+        case "spiral":
+            drawSpiral(bass, lows, mids, highs);
+            break;
+        case "particles":
+            drawParticles(bass, lows, mids, highs);
+            break;
+        case "grid":
+            drawGrid(bass, lows, mids, highs);
+            break;
+        case "fractals":
+            drawFractals(bass, lows, mids, highs);
+            break;
+        case "spikes":
+            drawSpikes(bass, lows, mids, highs);
+            break;
+        case "resonance":
+            drawResonance(bass, lows, mids, highs);
+            break;
         case "smooth":
             drawSmoothWaves(bass, lows, mids, highs);
             break;
@@ -171,13 +198,13 @@ function draw() {
 function drawAggressiveWaves(bass, lows, mids, highs) {
     strokeWeight(2);
     stroke(255, 0, 0, 200);
-    drawAggressiveWave(bass, height * 0.4);
+    drawAggressiveWave(bass, height * 0.5);
     stroke(255, 0, 0, 150);
-    drawAggressiveWave(lows, height * 0.4);
+    drawAggressiveWave(lows, height * 0.5);
     stroke(255, 0, 0, 100);
-    drawAggressiveWave(mids, height * 0.4);
+    drawAggressiveWave(mids, height * 0.5);
     stroke(255, 0, 0, 80);
-    drawAggressiveWave(highs, height * 0.4);
+    drawAggressiveWave(highs, height * 0.5);
 }
 
 function drawAggressiveWave(frequencyBand, yOffset) {
@@ -199,17 +226,17 @@ function drawAggressiveWave(frequencyBand, yOffset) {
     endShape();
 }
 
-// SMOOTH - Elegant flowing waves (green/cyan gradient)
+// SMOOTH - Elegant flowing waves (red)
 function drawSmoothWaves(bass, lows, mids, highs) {
     strokeWeight(1.5);
-    stroke(0, 255, 200, 200);
-    drawSmoothWave(bass, height * 0.4, 0.5);
-    stroke(0, 200, 255, 150);
-    drawSmoothWave(lows, height * 0.4, 0.4);
-    stroke(100, 200, 255, 100);
-    drawSmoothWave(mids, height * 0.4, 0.3);
-    stroke(150, 150, 255, 80);
-    drawSmoothWave(highs, height * 0.4, 0.2);
+    stroke(255, 0, 0, 200);
+    drawSmoothWave(bass, height * 0.5, 0.5);
+    stroke(255, 0, 0, 150);
+    drawSmoothWave(lows, height * 0.5, 0.4);
+    stroke(255, 0, 0, 100);
+    drawSmoothWave(mids, height * 0.5, 0.3);
+    stroke(255, 0, 0, 80);
+    drawSmoothWave(highs, height * 0.5, 0.2);
 }
 
 function drawSmoothWave(frequencyBand, yOffset, amplitude) {
@@ -230,17 +257,17 @@ function drawSmoothWave(frequencyBand, yOffset, amplitude) {
     endShape();
 }
 
-// SHARP - Thin, precise waves (purple)
+// SHARP - Thin, precise waves (red)
 function drawSharpWaves(bass, lows, mids, highs) {
     strokeWeight(0.8);
-    stroke(200, 100, 255, 200);
-    drawSharpWave(bass, height * 0.4);
-    stroke(180, 100, 255, 150);
-    drawSharpWave(lows, height * 0.4);
-    stroke(160, 100, 255, 100);
-    drawSharpWave(mids, height * 0.4);
-    stroke(140, 100, 255, 80);
-    drawSharpWave(highs, height * 0.4);
+    stroke(255, 0, 0, 200);
+    drawSharpWave(bass, height * 0.5);
+    stroke(255, 0, 0, 150);
+    drawSharpWave(lows, height * 0.5);
+    stroke(255, 0, 0, 100);
+    drawSharpWave(mids, height * 0.5);
+    stroke(255, 0, 0, 80);
+    drawSharpWave(highs, height * 0.5);
 }
 
 function drawSharpWave(frequencyBand, yOffset) {
@@ -261,20 +288,20 @@ function drawSharpWave(frequencyBand, yOffset) {
     endShape();
 }
 
-// BOLD - Thick, powerful waves (orange/yellow)
+// BOLD - Thick, powerful waves (red)
 function drawBoldWaves(bass, lows, mids, highs) {
     strokeWeight(4);
-    stroke(255, 150, 0, 200);
-    drawBoldWave(bass, height * 0.4);
+    stroke(255, 0, 0, 200);
+    drawBoldWave(bass, height * 0.5);
     strokeWeight(3.5);
-    stroke(255, 180, 0, 150);
-    drawBoldWave(lows, height * 0.4);
+    stroke(255, 0, 0, 150);
+    drawBoldWave(lows, height * 0.5);
     strokeWeight(3);
-    stroke(255, 200, 0, 100);
-    drawBoldWave(mids, height * 0.4);
+    stroke(255, 0, 0, 100);
+    drawBoldWave(mids, height * 0.5);
     strokeWeight(2.5);
-    stroke(255, 220, 0, 80);
-    drawBoldWave(highs, height * 0.4);
+    stroke(255, 0, 0, 80);
+    drawBoldWave(highs, height * 0.5);
 }
 
 function drawBoldWave(frequencyBand, yOffset) {
@@ -295,17 +322,17 @@ function drawBoldWave(frequencyBand, yOffset) {
     endShape();
 }
 
-// WAVY - Sinuous, flowing (blue/cyan)
+// WAVY - Sinuous, flowing (red)
 function drawWavyWaves(bass, lows, mids, highs) {
     strokeWeight(2);
-    stroke(100, 200, 255, 200);
-    drawWavyWave(bass, height * 0.4, 0.03);
-    stroke(50, 200, 255, 150);
-    drawWavyWave(lows, height * 0.4, 0.025);
-    stroke(100, 180, 255, 100);
-    drawWavyWave(mids, height * 0.4, 0.02);
-    stroke(150, 150, 255, 80);
-    drawWavyWave(highs, height * 0.4, 0.015);
+    stroke(255, 0, 0, 200);
+    drawWavyWave(bass, height * 0.5, 0.03);
+    stroke(255, 0, 0, 150);
+    drawWavyWave(lows, height * 0.5, 0.025);
+    stroke(255, 0, 0, 100);
+    drawWavyWave(mids, height * 0.5, 0.02);
+    stroke(255, 0, 0, 80);
+    drawWavyWave(highs, height * 0.5, 0.015);
 }
 
 function drawWavyWave(frequencyBand, yOffset, waveFreq) {
@@ -326,17 +353,17 @@ function drawWavyWave(frequencyBand, yOffset, waveFreq) {
     endShape();
 }
 
-// GEOMETRIC - Angular, structured (lime green)
+// GEOMETRIC - Angular, structured (red)
 function drawGeometricWaves(bass, lows, mids, highs) {
     strokeWeight(2);
-    stroke(150, 255, 0, 200);
-    drawGeometricWave(bass, height * 0.4);
-    stroke(120, 255, 0, 150);
-    drawGeometricWave(lows, height * 0.4);
-    stroke(90, 255, 0, 100);
-    drawGeometricWave(mids, height * 0.4);
-    stroke(60, 255, 0, 80);
-    drawGeometricWave(highs, height * 0.4);
+    stroke(255, 0, 0, 200);
+    drawGeometricWave(bass, height * 0.5);
+    stroke(255, 0, 0, 150);
+    drawGeometricWave(lows, height * 0.5);
+    stroke(255, 0, 0, 100);
+    drawGeometricWave(mids, height * 0.5);
+    stroke(255, 0, 0, 80);
+    drawGeometricWave(highs, height * 0.5);
 }
 
 function drawGeometricWave(frequencyBand, yOffset) {
@@ -350,17 +377,17 @@ function drawGeometricWave(frequencyBand, yOffset) {
     endShape();
 }
 
-// ORGANIC - Smooth, natural (teal)
+// ORGANIC - Smooth, natural (red)
 function drawOrganicWaves(bass, lows, mids, highs) {
     strokeWeight(2.5);
-    stroke(0, 200, 200, 200);
-    drawOrganicWave(bass, height * 0.4);
-    stroke(50, 200, 180, 150);
-    drawOrganicWave(lows, height * 0.4);
-    stroke(100, 180, 200, 100);
-    drawOrganicWave(mids, height * 0.4);
-    stroke(150, 160, 200, 80);
-    drawOrganicWave(highs, height * 0.4);
+    stroke(255, 0, 0, 200);
+    drawOrganicWave(bass, height * 0.5);
+    stroke(255, 0, 0, 150);
+    drawOrganicWave(lows, height * 0.5);
+    stroke(255, 0, 0, 100);
+    drawOrganicWave(mids, height * 0.5);
+    stroke(255, 0, 0, 80);
+    drawOrganicWave(highs, height * 0.5);
 }
 
 function drawOrganicWave(frequencyBand, yOffset) {
@@ -381,21 +408,21 @@ function drawOrganicWave(frequencyBand, yOffset) {
     endShape();
 }
 
-// PULSING - Rhythmic, breathing (pink/magenta)
+// PULSING - Rhythmic, breathing (red)
 function drawPulsingWaves(bass, lows, mids, highs) {
     const pulse = sin(time * 0.1) * 2 + 2;
     strokeWeight(1.5 + pulse);
-    stroke(255, 100, 200, 200);
-    drawPulsingWave(bass, height * 0.4);
+    stroke(255, 0, 0, 200);
+    drawPulsingWave(bass, height * 0.5);
     strokeWeight(1.3 + pulse * 0.8);
-    stroke(255, 80, 200, 150);
-    drawPulsingWave(lows, height * 0.4);
+    stroke(255, 0, 0, 150);
+    drawPulsingWave(lows, height * 0.5);
     strokeWeight(1.1 + pulse * 0.6);
-    stroke(255, 60, 200, 100);
-    drawPulsingWave(mids, height * 0.4);
+    stroke(255, 0, 0, 100);
+    drawPulsingWave(mids, height * 0.5);
     strokeWeight(0.9 + pulse * 0.4);
-    stroke(255, 40, 200, 80);
-    drawPulsingWave(highs, height * 0.4);
+    stroke(255, 0, 0, 80);
+    drawPulsingWave(highs, height * 0.5);
 }
 
 function drawPulsingWave(frequencyBand, yOffset) {
@@ -416,17 +443,17 @@ function drawPulsingWave(frequencyBand, yOffset) {
     endShape();
 }
 
-// MINIMAL - Subtle, delicate (light gray)
+// MINIMAL - Subtle, delicate (red)
 function drawMinimalWaves(bass, lows, mids, highs) {
     strokeWeight(0.5);
-    stroke(200, 200, 200, 200);
-    drawMinimalWave(bass, height * 0.4);
-    stroke(180, 180, 180, 150);
-    drawMinimalWave(lows, height * 0.4);
-    stroke(160, 160, 160, 100);
-    drawMinimalWave(mids, height * 0.4);
-    stroke(140, 140, 140, 80);
-    drawMinimalWave(highs, height * 0.4);
+    stroke(255, 0, 0, 200);
+    drawMinimalWave(bass, height * 0.5);
+    stroke(255, 0, 0, 150);
+    drawMinimalWave(lows, height * 0.5);
+    stroke(255, 0, 0, 100);
+    drawMinimalWave(mids, height * 0.5);
+    stroke(255, 0, 0, 80);
+    drawMinimalWave(highs, height * 0.5);
 }
 
 function drawMinimalWave(frequencyBand, yOffset) {
@@ -440,15 +467,15 @@ function drawMinimalWave(frequencyBand, yOffset) {
     endShape();
 }
 
-// DENSE - Many overlapping lines (bright white)
+// DENSE - Many overlapping lines (red)
 function drawDenseWaves(bass, lows, mids, highs) {
     strokeWeight(0.5);
     for (let i = 0; i < 3; i++) {
-        stroke(255, 255, 255, 80);
-        drawDenseWave(bass, height * 0.4 - i * 5);
-        drawDenseWave(lows, height * 0.4 - i * 5);
-        drawDenseWave(mids, height * 0.4 - i * 5);
-        drawDenseWave(highs, height * 0.4 - i * 5);
+        stroke(255, 0, 0, 100);
+        drawDenseWave(bass, height * 0.5 - i * 5);
+        drawDenseWave(lows, height * 0.5 - i * 5);
+        drawDenseWave(mids, height * 0.5 - i * 5);
+        drawDenseWave(highs, height * 0.5 - i * 5);
     }
 }
 
@@ -461,6 +488,246 @@ function drawDenseWave(frequencyBand, yOffset) {
         vertex(x, y);
     }
     endShape();
+}
+
+// BARS - Vertical equalizer bars (red)
+function drawBars(bass, lows, mids, highs) {
+    const barWidth = width / 64;
+    stroke(255, 0, 0, 220);
+    strokeWeight(1);
+    
+    const allFreqs = [...bass, ...lows, ...mids, ...highs];
+    
+    for (let i = 0; i < allFreqs.length; i++) {
+        const freq = allFreqs[i];
+        const x = (i / allFreqs.length) * width;
+        const barHeight = map(freq, 0, 255, 10, height * 0.8);
+        
+        noFill();
+        stroke(255, 0, 0, 200);
+        rect(x, height * 0.8 - barHeight, barWidth * 0.8, barHeight);
+        
+        stroke(255, 100, 100, 150);
+        rect(x + 2, height * 0.8 - barHeight + 2, barWidth * 0.8 - 4, barHeight - 4);
+    }
+}
+
+// CIRCLES - Concentric circles (red)
+function drawCircles(bass, lows, mids, highs) {
+    const centerX = width / 2;
+    const centerY = height * 0.5;
+    noFill();
+    strokeWeight(2);
+    
+    const avgBass = bass.reduce((a, b) => a + b) / bass.length;
+    const avgLows = lows.reduce((a, b) => a + b) / lows.length;
+    const avgMids = mids.reduce((a, b) => a + b) / mids.length;
+    const avgHighs = highs.reduce((a, b) => a + b) / highs.length;
+    
+    stroke(255, 0, 0, 200);
+    circle(centerX, centerY, map(avgBass, 0, 255, 50, 400));
+    
+    stroke(255, 0, 0, 150);
+    circle(centerX, centerY, map(avgLows, 0, 255, 30, 300));
+    
+    stroke(255, 0, 0, 100);
+    circle(centerX, centerY, map(avgMids, 0, 255, 20, 200));
+    
+    stroke(255, 0, 0, 80);
+    circle(centerX, centerY, map(avgHighs, 0, 255, 10, 100));
+}
+
+// DOTS - Particle dots (red)
+function drawDots(bass, lows, mids, highs) {
+    noStroke();
+    const allFreqs = [...bass, ...lows, ...mids, ...highs];
+    
+    for (let i = 0; i < allFreqs.length; i += 4) {
+        const freq = allFreqs[i];
+        const x = (i / allFreqs.length) * width;
+        const y = height * 0.5 - map(freq, 0, 255, 5, 200);
+        const size = map(freq, 0, 255, 2, 15);
+        
+        fill(255, 0, 0, map(freq, 0, 255, 100, 220));
+        circle(x, y, size);
+        
+        fill(255, 100, 100, 100);
+        circle(x, y, size * 2);
+    }
+}
+
+// SPIRAL - Spiral pattern (red)
+function drawSpiral(bass, lows, mids, highs) {
+    const centerX = width / 2;
+    const centerY = height * 0.5;
+    stroke(255, 0, 0, 200);
+    strokeWeight(2);
+    noFill();
+    
+    const allFreqs = [...bass, ...lows, ...mids, ...highs];
+    
+    beginShape();
+    for (let i = 0; i < allFreqs.length; i++) {
+        const freq = allFreqs[i];
+        const angle = (i / allFreqs.length) * TWO_PI * 4 + time * 0.02;
+        const radius = map(freq, 0, 255, 50, 300) + map(i, 0, allFreqs.length, 0, 150);
+        
+        const x = centerX + cos(angle) * radius;
+        const y = centerY + sin(angle) * radius;
+        
+        vertex(x, y);
+    }
+    endShape();
+}
+
+// PARTICLES - Scattered particles (red)
+function drawParticles(bass, lows, mids, highs) {
+    noStroke();
+    const allFreqs = [...bass, ...lows, ...mids, ...highs];
+    
+    for (let i = 0; i < allFreqs.length; i += 2) {
+        const freq = allFreqs[i];
+        const x = (i / allFreqs.length) * width;
+        const yVariation = sin(i * 0.05 + time * 0.05) * 100;
+        const y = height * 0.5 + yVariation - map(freq, 0, 255, 0, 150);
+        const size = map(freq, 0, 255, 1, 20);
+        
+        fill(255, 0, 0, map(freq, 0, 255, 80, 200));
+        circle(x, y, size);
+    }
+}
+
+// GRID - Grid pattern (red)
+function drawGrid(bass, lows, mids, highs) {
+    stroke(255, 0, 0, 150);
+    strokeWeight(1);
+    noFill();
+    
+    const gridSize = 30;
+    const allFreqs = [...bass, ...lows, ...mids, ...highs];
+    
+    for (let x = 0; x < width; x += gridSize) {
+        for (let y = 0; y < height; y += gridSize) {
+            const freqIndex = floor((x / width) * allFreqs.length);
+            const freq = allFreqs[freqIndex];
+            const size = map(freq, 0, 255, 5, gridSize * 0.8);
+            
+            stroke(255, 0, 0, map(freq, 0, 255, 80, 180));
+            rect(x, y, size, size);
+        }
+    }
+}
+
+// FRACTALS - Fractal pattern (red)
+function drawFractals(bass, lows, mids, highs) {
+    const centerX = width / 2;
+    const centerY = height * 0.5;
+    stroke(255, 0, 0, 200);
+    strokeWeight(1);
+    noFill();
+    
+    const avgFreq = (bass.reduce((a, b) => a + b) + lows.reduce((a, b) => a + b) + 
+                    mids.reduce((a, b) => a + b) + highs.reduce((a, b) => a + b)) / 
+                   (bass.length + lows.length + mids.length + highs.length);
+    
+    const levels = map(avgFreq, 0, 255, 3, 6);
+    
+    for (let i = 0; i < levels; i++) {
+        const size = 50 + i * 80 + sin(time * 0.05 + i) * 30;
+        stroke(255, 0, 0, 200 - i * 30);
+        circle(centerX, centerY, size);
+    }
+    
+    stroke(255, 0, 0, 100);
+    strokeWeight(0.5);
+    for (let i = 0; i < 12; i++) {
+        const angle = (i / 12) * TWO_PI;
+        const x1 = centerX + cos(angle) * 50;
+        const y1 = centerY + sin(angle) * 50;
+        const x2 = centerX + cos(angle) * 300;
+        const y2 = centerY + sin(angle) * 300;
+        line(x1, y1, x2, y2);
+    }
+}
+
+// SPIKES - Radial spikes (red)
+function drawSpikes(bass, lows, mids, highs) {
+    const centerX = width / 2;
+    const centerY = height * 0.5;
+    const allFreqs = [...bass, ...lows, ...mids, ...highs];
+    
+    const numSpikes = 32;
+    
+    for (let i = 0; i < numSpikes; i++) {
+        const angle = (i / numSpikes) * TWO_PI;
+        const freqIndex = floor((i / numSpikes) * allFreqs.length);
+        const freq = allFreqs[freqIndex];
+        
+        const length = map(freq, 0, 255, 20, 300);
+        const x2 = centerX + cos(angle) * length;
+        const y2 = centerY + sin(angle) * length;
+        
+        stroke(255, 0, 0, map(freq, 0, 255, 100, 220));
+        strokeWeight(map(freq, 0, 255, 0.5, 3));
+        line(centerX, centerY, x2, y2);
+    }
+}
+
+// RESONANCE - Expanding rings (red)
+function drawResonance(bass, lows, mids, highs) {
+    const centerX = width / 2;
+    const centerY = height * 0.5;
+    noFill();
+    
+    const avgBass = bass.reduce((a, b) => a + b) / bass.length;
+    const avgLows = lows.reduce((a, b) => a + b) / lows.length;
+    const avgMids = mids.reduce((a, b) => a + b) / mids.length;
+    const avgHighs = highs.reduce((a, b) => a + b) / highs.length;
+    
+    stroke(255, 0, 0, 220);
+    strokeWeight(2);
+    const baseRing1 = map(avgBass, 0, 255, 30, 280) + sin(time * 0.08) * 20;
+    circle(centerX, centerY, baseRing1);
+    
+    stroke(255, 0, 0, 180);
+    strokeWeight(1.8);
+    const baseRing2 = map(avgLows, 0, 255, 40, 240) + sin(time * 0.06 + 1) * 25;
+    circle(centerX, centerY, baseRing2);
+    
+    stroke(255, 0, 0, 140);
+    strokeWeight(1.5);
+    const baseRing3 = map(avgMids, 0, 255, 50, 200) + sin(time * 0.04 + 2) * 20;
+    circle(centerX, centerY, baseRing3);
+    
+    stroke(255, 0, 0, 100);
+    strokeWeight(1.2);
+    const baseRing4 = map(avgHighs, 0, 255, 60, 150) + sin(time * 0.02 + 3) * 15;
+    circle(centerX, centerY, baseRing4);
+    
+    stroke(255, 0, 0, 80);
+    strokeWeight(0.5);
+    const numLines = 16;
+    for (let i = 0; i < numLines; i++) {
+        const angle = (i / numLines) * TWO_PI;
+        const maxLength = 350;
+        
+        for (let len = 0; len < maxLength; len += 30) {
+            const lineAlpha = map(len, 0, maxLength, 150, 20);
+            stroke(255, 0, 0, lineAlpha);
+            
+            const x1 = centerX + cos(angle) * len;
+            const y1 = centerY + sin(angle) * len;
+            const x2 = centerX + cos(angle) * (len + 20);
+            const y2 = centerY + sin(angle) * (len + 20);
+            
+            line(x1, y1, x2, y2);
+        }
+    }
+    
+    noStroke();
+    fill(255, 0, 0, map(avgBass, 0, 255, 150, 255));
+    const centerSize = map(avgBass, 0, 255, 8, 30) + sin(time * 0.1) * 5;
+    circle(centerX, centerY, centerSize);
 }
 
 function mousePressed() {
