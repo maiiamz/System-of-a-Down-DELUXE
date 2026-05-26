@@ -1,11 +1,34 @@
-const BARS_AUDIO_PATH = "/audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3"
+let currentSongPath = "/audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3";
+let currentSongName = "Sugar";
 let song;
 let fft;
 let time = 0;
+let bgImage;
+
+// Map of song paths to song names
+const songNames = {
+    "/audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3": "Sugar",
+    "/audio/Suite-Pee.mp3": "Suite Pee",
+    "/audio/Know.mp3": "Know",
+    "/audio/Suggestions.mp3": "Suggestions",
+    "/audio/Spiders.mp3": "Spiders",
+    "/audio/DDevil.mp3": "DDevil",
+    "/audio/Soil.mp3": "Soil",
+    "/audio/War_.mp3": "War?",
+    "/audio/Peephole.mp3": "Peephole",
+    "/audio/CUBErt.mp3": "CUBErt",
+    "/audio/Darts.mp3": "Darts",
+    "/audio/P.L.U.C.K..mp3": "P.L.U.C.K.",
+    "/audio/Sugar(Live-at-Irving-Plaza,NYC,NY-January-1999).mp3": "Sugar (Live - 1999)",
+    "/audio/War_ (Live-1999).mp3": "War? (Live - 1999)",
+    "/audio/Suite-Pee(Live-1999).mp3": "Suite Pee (Live - 1999)",
+    "/audio/Know(Live-1999).mp3": "Know (Live - 1999)",
+    "/audio/Marmalade.mp3": "Marmalade"
+};
 
 function preload() {
     soundFormats("mp3");
-    song = loadSound(BARS_AUDIO_PATH);
+    song = loadSound(currentSongPath);
     bgImage = loadImage("./img/SOAD-deluxe.jpg");
 }
 
@@ -14,6 +37,59 @@ function setup() {
     fft = new p5.FFT(0.8, 256);
     fft.setInput(song);
     noFill();
+    
+    // Disable scrolling
+    document.body.style.overflow = 'hidden';
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+    
+    // Setup songs dropdown
+    setupSongsMenu();
+}
+
+function setupSongsMenu() {
+    const songsBtn = document.getElementById('songsBtn');
+    const songsList = document.getElementById('songsList');
+    const songOptions = document.querySelectorAll('.song-option');
+    
+    // Toggle dropdown on button click
+    songsBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        songsList.classList.toggle('active');
+    });
+    
+    // Handle song selection
+    songOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const newPath = this.getAttribute('data-path');
+            changeSong(newPath);
+            songsList.classList.remove('active');
+        });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+        songsList.classList.remove('active');
+    });
+}
+
+function changeSong(newPath) {
+    currentSongPath = newPath;
+    currentSongName = songNames[newPath] || "Unknown";
+    
+    // Update the now playing display
+    document.getElementById('currentSong').textContent = currentSongName;
+    
+    // Stop current song
+    if (song && song.isPlaying()) {
+        song.stop();
+    }
+    
+    // Load new song
+    song = loadSound(currentSongPath, function() {
+        fft.setInput(song);
+    });
 }
 
 function draw() {
@@ -53,6 +129,9 @@ function draw() {
     stroke(255, 0, 0, 100);
     drawAggressiveWave(mids, height * 0.2);
     
+    stroke(255, 0, 0, 80);
+    drawAggressiveWave(highs, height * 0.2);
+    
     time += 0.05;
 }
 
@@ -86,7 +165,7 @@ function drawAggressiveWave(frequencyBand, yOffset) {
 function mousePressed() {
     userStartAudio();
     
-    if (song.isLoaded()) {
+    if (song && song.isLoaded()) {
         if (song.isPlaying()) {
             song.pause();
         } else {
