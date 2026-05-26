@@ -10,6 +10,11 @@ html {
     padding: 0;
 }
 
+main {
+    position: fixed;
+    left: 0;
+    top: 0;
+}
 h1 {
     color: white;
     text-align: right;
