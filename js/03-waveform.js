@@ -1,12 +1,15 @@
+// Current song being played
 let currentSongPath = "audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3";
 let currentSongName = "Sugar (Official HD Video)";
 let currentWaveStyle = "aggressive";
-let song;
-let fft;
-let time = 0;
-let bgImage;
 
-// Map of song paths to song names
+// p5.sound objects for audio playback and frequency analysis
+let song;
+let fft; // Fast Fourier Transform for frequency spectrum analysis
+let time = 0; // Time counter for animations
+let bgImage; // Background image to display
+
+// Maps audio file paths to display names for the song menu
 const songNames = {
     "audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3": "Sugar (Official HD Video)",
     "audio/Suite-Pee.mp3": "Suite Pee",
@@ -27,7 +30,7 @@ const songNames = {
     "audio/Marmalade.mp3": "Marmalade"
 };
 
-// Map of song paths to wave styles
+// Maps each song to its corresponding visualization style (determines which drawing function is used)
 const waveStyles = {
     "audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3": "aggressive",
     "audio/Suite-Pee.mp3": "bars",
@@ -48,30 +51,34 @@ const waveStyles = {
     "audio/Marmalade.mp3": "dense"
 };
 
+// Preload assets before the sketch starts
 function preload() {
-    soundFormats("mp3");
-    song = loadSound(currentSongPath);
-    bgImage = loadImage("./img/SOAD-deluxe.jpg");
+    soundFormats("mp3"); // Set audio format to MP3
+    song = loadSound(currentSongPath); // Load the initial song file
+    bgImage = loadImage("./img/SOAD-deluxe.jpg"); // Load background image
 }
 
-// Variables for responsive background image
+// Variables for responsive background image positioning and sizing
 let bgImageWidth = 500;
 let bgImageHeight = 500;
-let bgImageX = 100;
-let bgImageY = 100;
+let bgImageX = 100; // X position of background image
+let bgImageY = 100; // Y position of background image
 
-// Calculate responsive dimensions for background image
+// Adjusts background image dimensions based on screen size (mobile vs desktop)
 function calculateResponsiveImage() {
+    // Check if screen is mobile sized
     const isMobile = window.innerWidth <= 768;
     
     if (isMobile) {
+        // For mobile: make image smaller and center it
         const maxImgWidth = Math.min(windowWidth * 0.6, 300);
         const maxImgHeight = Math.min(windowHeight * 0.5, 300);
         bgImageWidth = maxImgWidth;
         bgImageHeight = maxImgHeight;
-        bgImageX = (windowWidth - bgImageWidth) / 2;
-        bgImageY = (windowHeight - bgImageHeight) / 2;
+        bgImageX = (windowWidth - bgImageWidth) / 2; // Center horizontally
+        bgImageY = (windowHeight - bgImageHeight) / 2; // Center vertically
     } else {
+        // For desktop: use larger dimensions
         bgImageWidth = 500;
         bgImageHeight = 500;
         bgImageX = 100;
@@ -79,106 +86,114 @@ function calculateResponsiveImage() {
     }
 }
 
+// Initialize the p5 sketch
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight); // Create full-screen canvas
     
-    // Style the canvas to stay behind UI elements
+    // Position canvas behind other page elements so UI is clickable
     const canvas = document.querySelector('canvas');
     if (canvas) {
         canvas.style.position = 'fixed';
         canvas.style.top = '0';
         canvas.style.left = '0';
-        canvas.style.zIndex = '-1';
+        canvas.style.zIndex = '-1'; // Send to back
     }
     
-    fft = new p5.FFT(0.8, 256);
-    fft.setInput(song);
-    noFill();
+    // Setup FFT (frequency analysis) with smoothing and resolution
+    fft = new p5.FFT(0.8, 256); // 0.8 = smoothing, 256 = frequency bands
+    fft.setInput(song); // Connect FFT to current song
+    noFill(); // Don't fill shapes by default
 
-    // Disable scrolling
+    // Remove default page scrolling to keep focus on visualization
     document.body.style.overflow = 'hidden';
     document.body.style.margin = '0';
     document.body.style.padding = '0';
 
-    // Calculate responsive background image dimensions
+    // Adjust background image for current screen size
     calculateResponsiveImage();
 
-    // Initialize current song display
+    // Display current song name in the UI
     document.getElementById('currentSong').textContent = currentSongName;
 
-    // Setup songs dropdown
+    // Set up the song selection dropdown menu
     setupSongsMenu();
 
-    // Handle window resize for responsive image
+    // Listen for window resizing to adjust canvas and image responsively
     window.addEventListener('resize', () => {
         calculateResponsiveImage();
         resizeCanvas(windowWidth, windowHeight);
     });
 }
 
+// Initialize the dropdown menu for song selection
 function setupSongsMenu() {
-    const songsBtn = document.getElementById('songsBtn');
-    const songsList = document.getElementById('songsList');
-    const songOptions = document.querySelectorAll('.song-option');
+    const songsBtn = document.getElementById('songsBtn'); // Menu button
+    const songsList = document.getElementById('songsList'); // Dropdown list
+    const songOptions = document.querySelectorAll('.song-option'); // Individual song items
 
-    // Toggle dropdown on button click
+    // Show/hide dropdown when button is clicked
     songsBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        songsList.classList.toggle('active');
+        e.stopPropagation(); // Prevent event from bubbling up
+        songsList.classList.toggle('active'); // Toggle visibility
     });
 
-    // Handle song selection
+    // Handle when user selects a song from the dropdown
     songOptions.forEach(option => {
         option.addEventListener('click', function (e) {
             e.stopPropagation();
-            const newPath = this.getAttribute('data-path');
-            changeSong(newPath);
-            songsList.classList.remove('active');
+            const newPath = this.getAttribute('data-path'); // Get song file path
+            changeSong(newPath); // Load and play the selected song
+            songsList.classList.remove('active'); // Close dropdown
         });
     });
 
-    // Close dropdown when clicking outside
+    // Close dropdown when clicking anywhere else on the page
     document.addEventListener('click', function () {
         songsList.classList.remove('active');
     });
 }
 
+// Switch to a different song and update visualization style
 function changeSong(newPath) {
-    currentSongPath = newPath;
-    currentSongName = songNames[newPath] || "Unknown";
-    currentWaveStyle = waveStyles[newPath] || "aggressive";
+    currentSongPath = newPath; // Update current song path
+    currentSongName = songNames[newPath] || "Unknown"; // Get song display name
+    currentWaveStyle = waveStyles[newPath] || "aggressive"; // Get visualization style
 
-    // Update the now playing display
+    // Update the song title shown on screen
     document.getElementById('currentSong').textContent = currentSongName;
 
-    // Stop current song
+    // Stop the currently playing song if it's running
     if (song && song.isPlaying()) {
         song.stop();
     }
 
-    // Load new song
+    // Load the new song file
     song = loadSound(currentSongPath, function () {
+        // Once loaded, connect it to the FFT for frequency analysis
         fft.setInput(song);
     });
 }
 
+// Main animation loop - runs every frame
 function draw() {
-    background(0);
+    background(0); // Clear screen with black background
 
-    // Add image on top with transparency
+    // Draw the background image with semi-transparency (transparency = 100/255)
     tint(255, 100);
     image(bgImage, bgImageX, bgImageY, bgImageWidth, bgImageHeight);
-    noTint();
+    noTint(); // Reset tint for other drawing commands
 
-    const spectrum = fft.analyze();
+    // Get frequency spectrum data from the audio
+    const spectrum = fft.analyze(); // Returns array of 256 frequency values (0-255)
     const quarterSize = spectrum.length / 4;
 
-    const bass = spectrum.slice(0, quarterSize);
-    const lows = spectrum.slice(quarterSize, quarterSize * 2);
-    const mids = spectrum.slice(quarterSize * 2, quarterSize * 3);
-    const highs = spectrum.slice(quarterSize * 3);
+    // Split spectrum into 4 frequency bands for different visual effects
+    const bass = spectrum.slice(0, quarterSize); // Low frequencies (0-25%)
+    const lows = spectrum.slice(quarterSize, quarterSize * 2); // Low-mid (25-50%)
+    const mids = spectrum.slice(quarterSize * 2, quarterSize * 3); // Mid (50-75%)
+    const highs = spectrum.slice(quarterSize * 3); // High frequencies (75-100%)
 
-    // Draw waves based on current style
+    // Draw visualization based on the current wave style
     switch(currentWaveStyle) {
         case "bars":
             drawBars(bass, lows, mids, highs);
@@ -238,10 +253,13 @@ function draw() {
             drawAggressiveWaves(bass, lows, mids, highs);
     }
 
-    time += 0.05;
+    time += 0.05; // Increment time for animations
 }
 
-// AGGRESSIVE - Original style (4 overlapping red waves)
+// ====== VISUALIZATION STYLES ======
+// Each function draws a different waveform visualization style
+
+// AGGRESSIVE - Original style: 4 overlapping red waves with sine waves
 function drawAggressiveWaves(bass, lows, mids, highs) {
     strokeWeight(2);
     stroke(255, 0, 0, 200);
@@ -254,28 +272,33 @@ function drawAggressiveWaves(bass, lows, mids, highs) {
     drawAggressiveWave(highs, height * 0.5);
 }
 
+// Draws a single aggressive wave line with mouse interaction
 function drawAggressiveWave(frequencyBand, yOffset) {
-    beginShape();
+    beginShape(); // Start drawing a shape
     for (let x = 0; x < width; x += 2) {
+        // Map screen x position to frequency band index
         const bandIndex = floor(map(x, 0, width, 0, frequencyBand.length - 1));
         const freqValue = frequencyBand[bandIndex];
+        // Calculate y position using sine wave + frequency value
         let y = yOffset + sin(x * 0.02) * (freqValue * 1) + (freqValue * 0.5);
         
+        // Push the wave away from the mouse cursor if cursor is nearby
         const distance = dist(x, y, mouseX, mouseY);
-        const pushRadius = 200;
+        const pushRadius = 200; // How far the effect extends from mouse
         if (distance < pushRadius) {
-            const pushForce = map(distance, 0, pushRadius, 80, 0);
-            const angle = atan2(y - mouseY, x - mouseX);
-            y += cos(angle) * pushForce;
+            const pushForce = map(distance, 0, pushRadius, 80, 0); // Stronger closer to mouse
+            const angle = atan2(y - mouseY, x - mouseX); // Direction away from mouse
+            y += cos(angle) * pushForce; // Apply push force
         }
-        vertex(x, y);
+        vertex(x, y); // Add point to the shape
     }
-    endShape();
+    endShape(); // Finish drawing the shape
 }
 
-// SMOOTH - Elegant flowing waves (red)
+// SMOOTH - Elegant, flowing waves with lower frequency modulation
 function drawSmoothWaves(bass, lows, mids, highs) {
     strokeWeight(1.5);
+    // Draw 4 waves with decreasing amplitude and different frequency bands
     stroke(255, 0, 0, 200);
     drawSmoothWave(bass, height * 0.5, 0.5);
     stroke(255, 0, 0, 150);
@@ -286,13 +309,16 @@ function drawSmoothWaves(bass, lows, mids, highs) {
     drawSmoothWave(highs, height * 0.5, 0.2);
 }
 
+// Draws a smooth wave with variable amplitude and mouse push effect
 function drawSmoothWave(frequencyBand, yOffset, amplitude) {
     beginShape();
     for (let x = 0; x < width; x += 3) {
         const bandIndex = floor(map(x, 0, width, 0, frequencyBand.length - 1));
         const freqValue = frequencyBand[bandIndex];
+        // Smooth wave with lower frequency oscillation
         let y = yOffset + sin(x * 0.01) * (freqValue * amplitude);
         
+        // Mouse interaction effect
         const distance = dist(x, y, mouseX, mouseY);
         if (distance < 150) {
             const pushForce = map(distance, 0, 150, 60, 0);
@@ -304,9 +330,9 @@ function drawSmoothWave(frequencyBand, yOffset, amplitude) {
     endShape();
 }
 
-// SHARP - Thin, precise waves (red)
+// SHARP - Thin, precise waves with faster oscillation
 function drawSharpWaves(bass, lows, mids, highs) {
-    strokeWeight(0.8);
+    strokeWeight(0.8); // Very thin lines
     stroke(255, 0, 0, 200);
     drawSharpWave(bass, height * 0.5);
     stroke(255, 0, 0, 150);
@@ -317,13 +343,16 @@ function drawSharpWaves(bass, lows, mids, highs) {
     drawSharpWave(highs, height * 0.5);
 }
 
+// Draws a sharp wave with high-frequency detail and mouse interaction
 function drawSharpWave(frequencyBand, yOffset) {
     beginShape();
-    for (let x = 0; x < width; x += 1) {
+    for (let x = 0; x < width; x += 1) { // Draw every pixel for sharp detail
         const bandIndex = floor(map(x, 0, width, 0, frequencyBand.length - 1));
         const freqValue = frequencyBand[bandIndex];
+        // Fast oscillation (0.03) creates sharp, detailed waves
         let y = yOffset + sin(x * 0.03) * (freqValue * 1.2);
         
+        // Mouse interaction
         const distance = dist(x, y, mouseX, mouseY);
         if (distance < 150) {
             const pushForce = map(distance, 0, 150, 60, 0);
@@ -335,8 +364,9 @@ function drawSharpWave(frequencyBand, yOffset) {
     endShape();
 }
 
-// BOLD - Thick, powerful waves (red)
+// BOLD - Thick, powerful waves with strong presence
 function drawBoldWaves(bass, lows, mids, highs) {
+    // Draw with decreasing stroke weights for visual depth
     strokeWeight(4);
     stroke(255, 0, 0, 200);
     drawBoldWave(bass, height * 0.5);
@@ -351,13 +381,16 @@ function drawBoldWaves(bass, lows, mids, highs) {
     drawBoldWave(highs, height * 0.5);
 }
 
+// Draws a bold, thick wave with sparse point sampling
 function drawBoldWave(frequencyBand, yOffset) {
     beginShape();
-    for (let x = 0; x < width; x += 4) {
+    for (let x = 0; x < width; x += 4) { // Sample every 4 pixels for bold effect
         const bandIndex = floor(map(x, 0, width, 0, frequencyBand.length - 1));
         const freqValue = frequencyBand[bandIndex];
+        // Combine sine wave with direct frequency contribution for power
         let y = yOffset + sin(x * 0.015) * (freqValue * 0.8) + (freqValue * 0.3);
         
+        // Mouse interaction
         const distance = dist(x, y, mouseX, mouseY);
         if (distance < 150) {
             const pushForce = map(distance, 0, 150, 60, 0);
