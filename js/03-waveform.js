@@ -1,5 +1,5 @@
 let currentSongPath = "audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3";
-let currentSongName = "Sugar";
+let currentSongName = "Sugar (Official HD Video)";
 let currentWaveStyle = "aggressive";
 let song;
 let fft;
