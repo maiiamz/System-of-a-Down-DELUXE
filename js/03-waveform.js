@@ -82,6 +82,15 @@ function calculateResponsiveImage() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
     
+    // Style the canvas to stay behind UI elements
+    const canvas = document.querySelector('canvas');
+    if (canvas) {
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.zIndex = '-1';
+    }
+    
     fft = new p5.FFT(0.8, 256);
     fft.setInput(song);
     noFill();
