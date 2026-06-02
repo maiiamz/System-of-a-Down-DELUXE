@@ -1,0 +1,122 @@
+/* ============= MOBILE OPTIMIZATIONS (768px and below) ============= */
+@media (max-width: 768px) {
+    .songs-button {
+        padding: clamp(10px, 2vh, 14px) clamp(14px, 3vw, 24px);
+        font-size: clamp(0.8em, 2.5vw, 1.1em);
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .song-option {
+        padding: clamp(12px, 2vh, 16px) clamp(12px, 2.5vw, 18px);
+        font-size: clamp(0.75em, 2vw, 1em);
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    .songs-dropdown {
+        min-width: clamp(200px, 90vw, 350px);
+        max-height: 60vh;
+    }
+
+    h1 {
+        margin-top: clamp(15px, 3vh, 25px);
+        margin-right: clamp(12px, 2vw, 20px);
+        font-size: clamp(1em, 5vw, 2em);
+    }
+
+    p {
+        margin-right: clamp(12px, 2vw, 20px);
+        font-size: clamp(0.6em, 1.8vw, 0.95em);
+    }
+
+    .now-playing {
+        bottom: clamp(12px, 2vh, 25px);
+        right: clamp(12px, 2vw, 25px);
+        padding: clamp(8px, 1.2vh, 12px) clamp(10px, 1.8vw, 16px);
+    }
+
+    .now-playing p {
+        font-size: clamp(0.65em, 1.6vw, 0.9em);
+    }
+
+    #currentSong {
+        font-size: clamp(0.85em, 2.2vw, 1.5em);
+    }
+}
+
+/* ============= MOBILE PEQUEÑO (máximo 480px) ============= */
+@media (max-width: 480px) {
+    .songs-menu {
+        top: clamp(10px, 2.5vh, 20px);
+        left: clamp(10px, 2vw, 18px);
+    }
+
+    .songs-button {
+        padding: clamp(10px, 1.8vh, 12px) clamp(12px, 2.5vw, 18px);
+        font-size: clamp(0.75em, 2.2vw, 0.95em);
+        min-height: 42px;
+    }
+
+    .songs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .song-option {
+        padding: clamp(10px, 1.5vh, 14px) clamp(10px, 2vw, 14px);
+        font-size: clamp(0.7em, 1.8vw, 0.9em);
+    }
+
+    h1 {
+        margin-top: clamp(12px, 2.5vh, 20px);
+        margin-right: clamp(10px, 1.8vw, 15px);
+        font-size: clamp(0.95em, 4.5vw, 1.8em);
+    }
+
+    p {
+        margin-right: clamp(10px, 1.8vw, 15px);
+        font-size: clamp(0.55em, 1.5vw, 0.8em);
+    }
+
+    .now-playing {
+        bottom: clamp(10px, 1.8vh, 20px);
+        right: clamp(10px, 1.8vw, 18px);
+    }
+
+    .now-playing p {
+        font-size: clamp(0.6em, 1.4vw, 0.8em);
+    }
+
+    #currentSong {
+        font-size: clamp(0.8em, 2vw, 1.2em);
+    }
+}
+
+/* ============= LANDSCAPE MÓVIL (altura limitada) ============= */
+@media (max-height: 500px) and (max-width: 768px) {
+    h1, p {
+        margin-top: 0.5vh;
+    }
+
+    .songs-dropdown {
+        max-height: 50vh;
+    }
+
+    .now-playing {
+        bottom: clamp(8px, 1.5vh, 15px);
+    }
+}
+
+/* ============= TABLET (769px - 1024px) ============= */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .songs-button {
+        min-height: 40px;
+    }
+
+    .song-option {
+        min-height: 42px;
+    }
+}

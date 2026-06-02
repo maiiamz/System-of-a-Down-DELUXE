@@ -54,6 +54,31 @@ function preload() {
     bgImage = loadImage("./img/SOAD-deluxe.jpg");
 }
 
+// Variables for responsive background image
+let bgImageWidth = 500;
+let bgImageHeight = 500;
+let bgImageX = 100;
+let bgImageY = 100;
+
+// Calculate responsive dimensions for background image
+function calculateResponsiveImage() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        const maxImgWidth = Math.min(width * 0.6, 300);
+        const maxImgHeight = Math.min(height * 0.5, 300);
+        bgImageWidth = maxImgWidth;
+        bgImageHeight = maxImgHeight;
+        bgImageX = (width - bgImageWidth) / 2;
+        bgImageY = (height - bgImageHeight) / 2;
+    } else {
+        bgImageWidth = 500;
+        bgImageHeight = 500;
+        bgImageX = 100;
+        bgImageY = 100;
+    }
+}
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
     fft = new p5.FFT(0.8, 256);
@@ -65,8 +90,17 @@ function setup() {
     document.body.style.margin = '0';
     document.body.style.padding = '0';
 
+    // Calculate responsive background image dimensions
+    calculateResponsiveImage();
+
     // Setup songs dropdown
     setupSongsMenu();
+
+    // Handle window resize for responsive image
+    window.addEventListener('resize', () => {
+        calculateResponsiveImage();
+        resizeCanvas(windowWidth, windowHeight);
+    });
 }
 
 function setupSongsMenu() {
@@ -120,7 +154,7 @@ function draw() {
 
     // Add image on top with transparency
     tint(255, 100);
-    image(bgImage, 100, 100, 500, 500);
+    image(bgImage, bgImageX, bgImageY, bgImageWidth, bgImageHeight);
     noTint();
 
     const spectrum = fft.analyze();
