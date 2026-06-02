@@ -65,12 +65,12 @@ function calculateResponsiveImage() {
     const isMobile = window.innerWidth <= 768;
     
     if (isMobile) {
-        const maxImgWidth = Math.min(width * 0.6, 300);
-        const maxImgHeight = Math.min(height * 0.5, 300);
+        const maxImgWidth = Math.min(windowWidth * 0.6, 300);
+        const maxImgHeight = Math.min windowHeight * 0.5, 300);
         bgImageWidth = maxImgWidth;
         bgImageHeight = maxImgHeight;
         bgImageX = (windowWidth - bgImageWidth) / 2;
-        bgImageY = (windowHeight - bgImageHeight) / 2;
+        bgImageY = (height - bgImageHeight) / 2;
     } else {
         bgImageWidth = 500;
         bgImageHeight = 500;
