@@ -70,7 +70,7 @@ function calculateResponsiveImage() {
         bgImageWidth = maxImgWidth;
         bgImageHeight = maxImgHeight;
         bgImageX = (windowWidth - bgImageWidth) / 2;
-        bgImageY = (height - bgImageHeight) / 2;
+        bgImageY = (windowHeight - bgImageHeight) / 2;
     } else {
         bgImageWidth = 500;
         bgImageHeight = 500;
