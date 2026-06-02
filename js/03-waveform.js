@@ -59,6 +59,7 @@ let bgImageWidth = 500;
 let bgImageHeight = 500;
 let bgImageX = 100;
 let bgImageY = 100;
+const BG_IMAGE_ASPECT_RATIO = 1; // Image is square
 
 // Calculate responsive dimensions for background image
 function calculateResponsiveImage() {
@@ -67,14 +68,24 @@ function calculateResponsiveImage() {
     if (isMobile) {
         const maxImgWidth = Math.min(width * 0.6, 300);
         const maxImgHeight = Math.min(height * 0.5, 300);
-        bgImageWidth = maxImgWidth;
-        bgImageHeight = maxImgHeight;
+        
+        // Maintain aspect ratio
+        let finalWidth = maxImgWidth;
+        let finalHeight = finalWidth / BG_IMAGE_ASPECT_RATIO;
+        
+        if (finalHeight > maxImgHeight) {
+            finalHeight = maxImgHeight;
+            finalWidth = finalHeight * BG_IMAGE_ASPECT_RATIO;
+        }
+        
+        bgImageWidth = finalWidth;
+        bgImageHeight = finalHeight;
         bgImageX = (width - bgImageWidth) / 2;
         bgImageY = (height - bgImageHeight) / 2;
     } else {
         bgImageWidth = 500;
         bgImageHeight = 500;
-        bgImageX = 100;
+        bgImageX = (width - bgImageWidth) / 2;
         bgImageY = 100;
     }
 }
