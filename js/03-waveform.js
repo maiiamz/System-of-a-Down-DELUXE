@@ -8,44 +8,44 @@ let bgImage;
 
 // Map of song paths to song names
 const songNames = {
-    "/audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3": "Sugar (Official HD Video)",
-    "/audio/Suite-Pee.mp3": "Suite Pee",
-    "/audio/Know.mp3": "Know",
-    "/audio/Suggestions.mp3": "Suggestions",
-    "/audio/Spiders.mp3": "Spiders",
-    "/audio/DDevil.mp3": "DDevil",
-    "/audio/Soil.mp3": "Soil",
-    "/audio/War_.mp3": "War?",
-    "/audio/Peephole.mp3": "Peephole",
-    "/audio/CUBErt.mp3": "CUBErt",
-    "/audio/Darts.mp3": "Darts",
-    "/audio/P.L.U.C.K..mp3": "P.L.U.C.K.",
-    "/audio/Sugar(Live-at-Irving-Plaza,NYC,NY-January-1999).mp3": "Sugar (Live - 1999)",
-    "/audio/War_ (Live-1999).mp3": "War? (Live - 1999)",
-    "/audio/Suite-Pee(Live-1999).mp3": "Suite Pee (Live - 1999)",
-    "/audio/Know(Live-1999).mp3": "Know (Live - 1999)",
-    "/audio/Marmalade.mp3": "Marmalade"
+    "audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3": "Sugar (Official HD Video)",
+    "audio/Suite-Pee.mp3": "Suite Pee",
+    "audio/Know.mp3": "Know",
+    "audio/Suggestions.mp3": "Suggestions",
+    "audio/Spiders.mp3": "Spiders",
+    "audio/DDevil.mp3": "DDevil",
+    "audio/Soil.mp3": "Soil",
+    "audio/War_.mp3": "War?",
+    "audio/Peephole.mp3": "Peephole",
+    "audio/CUBErt.mp3": "CUBErt",
+    "audio/Darts.mp3": "Darts",
+    "audio/P.L.U.C.K..mp3": "P.L.U.C.K.",
+    "audio/Sugar(Live-at-Irving-Plaza,NYC,NY-January-1999).mp3": "Sugar (Live - 1999)",
+    "audio/War_ (Live-1999).mp3": "War? (Live - 1999)",
+    "audio/Suite-Pee(Live-1999).mp3": "Suite Pee (Live - 1999)",
+    "audio/Know(Live-1999).mp3": "Know (Live - 1999)",
+    "audio/Marmalade.mp3": "Marmalade"
 };
 
 // Map of song paths to wave styles
 const waveStyles = {
-    "/audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3": "aggressive",
-    "/audio/Suite-Pee.mp3": "bars",
-    "/audio/Know.mp3": "sharp",
-    "/audio/Suggestions.mp3": "smooth",
-    "/audio/Spiders.mp3": "wavy",
-    "/audio/DDevil.mp3": "geometric",
-    "/audio/Soil.mp3": "organic",
-    "/audio/War_.mp3": "sharp",
-    "/audio/Peephole.mp3": "dots",
-    "/audio/CUBErt.mp3": "spiral",
-    "/audio/Darts.mp3": "sharp",
-    "/audio/P.L.U.C.K..mp3": "particles",
-    "/audio/Sugar(Live-at-Irving-Plaza,NYC,NY-January-1999).mp3": "bold",
-    "/audio/War_ (Live-1999).mp3": "fractals",
-    "/audio/Suite-Pee(Live-1999).mp3": "minimal",
-    "/audio/Know(Live-1999).mp3": "geometric",
-    "/audio/Marmalade.mp3": "dense"
+    "audio/System-Of-A-Down-Sugar-(Official-HD-Video)-(1).mp3": "aggressive",
+    "audio/Suite-Pee.mp3": "bars",
+    "audio/Know.mp3": "sharp",
+    "audio/Suggestions.mp3": "smooth",
+    "audio/Spiders.mp3": "wavy",
+    "audio/DDevil.mp3": "geometric",
+    "audio/Soil.mp3": "organic",
+    "audio/War_.mp3": "sharp",
+    "audio/Peephole.mp3": "dots",
+    "audio/CUBErt.mp3": "spiral",
+    "audio/Darts.mp3": "sharp",
+    "audio/P.L.U.C.K..mp3": "particles",
+    "audio/Sugar(Live-at-Irving-Plaza,NYC,NY-January-1999).mp3": "bold",
+    "audio/War_ (Live-1999).mp3": "fractals",
+    "audio/Suite-Pee(Live-1999).mp3": "minimal",
+    "audio/Know(Live-1999).mp3": "geometric",
+    "audio/Marmalade.mp3": "dense"
 };
 
 function preload() {
