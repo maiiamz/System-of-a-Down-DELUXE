@@ -26,6 +26,7 @@
         margin-top: clamp(15px, 3vh, 25px);
         margin-right: clamp(8px, 1.2vw, 12px);
         font-size: clamp(1em, 5vw, 2em);
+        max-width: 90vw;
     }
 
     p {
@@ -74,6 +75,7 @@
         margin-top: clamp(12px, 2.5vh, 20px);
         margin-right: clamp(6px, 1vw, 10px);
         font-size: clamp(0.95em, 4.5vw, 1.8em);
+        max-width: 90vw;
     }
 
     p {
